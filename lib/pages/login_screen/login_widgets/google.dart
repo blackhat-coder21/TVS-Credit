@@ -21,14 +21,14 @@ class login_googlefacebook extends StatelessWidget {
 
         const SizedBox(width: 16,),
 
-        // Container(
-        //   decoration: BoxDecoration(border: Border.all(color: Custom_colors.grey),borderRadius: BorderRadius.circular(70)),
-        //   // google icon
-        //   child: IconButton(
-        //       onPressed:() {} ,
-        //       icon: Image.asset("assets/icons/facebook2.png",height: 40,width: 40,)
-        //   ),
-        // ),
+        Container(
+          decoration: BoxDecoration(border: Border.all(color: Custom_colors.grey),borderRadius: BorderRadius.circular(70)),
+          // google icon
+          child: IconButton(
+              onPressed:() {} ,
+              icon: Image.asset("assets/icons/fb.png",height: 40,width: 40,)
+          ),
+        ),
       ],
     );
   }

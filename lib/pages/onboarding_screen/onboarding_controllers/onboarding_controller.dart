@@ -53,6 +53,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tvs_test/pages/home_screen/HomeScreen.dart';
+import '../../home_screen/PsychometricTestScreen.dart';
 import '../../login_screen/LoginScreen.dart';
 
 class Onboarding_controller extends GetxController {
@@ -69,7 +70,7 @@ class Onboarding_controller extends GetxController {
     FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user != null) {
         // User is logged in, navigate to the main screen
-        Get.offAll(HomeScreen());
+        Get.offAll(PsychometricTest());
       }
     });
   }

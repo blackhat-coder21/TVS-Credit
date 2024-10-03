@@ -56,6 +56,14 @@ dependencies:
   intl: ^0.17.0
   simple_ripple_animation: 0.0.9
   shared_preferences: ^2.0.6
+  flutter_timer_countdown: ^1.0.7
+  flutter_launcher_icons: ^0.14.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/tvs.jpg"
+
 
 dev_dependencies:
   flutter_test:

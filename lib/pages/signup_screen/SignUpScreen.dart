@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +5,10 @@ import 'package:tvs_test/pages/signup_screen/signup_widgets/form.dart';
 import 'package:tvs_test/pages/signup_screen/signup_widgets/terms_and_conditions.dart';
 import '../../utils/devices_utils/device_util.dart';
 import '../home_screen/HomeScreen.dart';
-import '../login_screen/login_widgets/divider.dart';
-import '../login_screen/login_widgets/google.dart';
 import 'package:http/http.dart' as http;
+
+import '../home_screen/PsychometricTestScreen.dart';
+import '../home_screen/SocialCapitalEvaluationScreen.dart';
 
 
 class SignUp_screen extends StatefulWidget {
@@ -27,7 +25,7 @@ class _SignUp_screenState extends State<SignUp_screen> {
   // controllers
   final TextEditingController _firstname_controller = TextEditingController();
   final TextEditingController _secondname_controller = TextEditingController();
-  final TextEditingController _address_controller = TextEditingController();
+  final TextEditingController _role_controller = TextEditingController();
   final TextEditingController _phonenumber_controller = TextEditingController();
   final TextEditingController _email_controller = TextEditingController();
   final TextEditingController _password_controller = TextEditingController();
@@ -54,28 +52,42 @@ class _SignUp_screenState extends State<SignUp_screen> {
           'first_name': _firstname_controller.text,
           'last_name': _secondname_controller.text,
           'phone': _phonenumber_controller.text,
-          'address': _address_controller.text,
+          'role': _role_controller.text,
         });
 
-        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-      } else {
+        // Role-based navigation
+        String role = _role_controller.text;
+
+        if (role == 'Loan Apply') {
+          // Navigate to PsychometricTest screen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => PsychometricTest()),
+          );
+        }
+        else if (role == 'Loan Approval') {
+          // Navigate to SocialCapitalTest screen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => SocialCapitalTest()),
+          );
+        }
+      }
+      else {
         // Handle error
         print("User registration failed");
       }
     } catch (e) {
-      // Handle any errors that occur during registration
       print("Error registering user: $e");
     }
   }
-
-
 
   @override
   void dispose() {
     super.dispose();
     _firstname_controller.dispose();
     _secondname_controller.dispose();
-    _address_controller.dispose();
+    _role_controller.dispose();
     _phonenumber_controller.dispose();
     _email_controller.dispose();
     _password_controller.dispose();
@@ -103,23 +115,13 @@ class _SignUp_screenState extends State<SignUp_screen> {
                 height: 24,
               ),
 
-              signup_form(firstname_controller: _firstname_controller, secondname_controller: _secondname_controller, address_controller: _address_controller, phonenumber_controller: _phonenumber_controller, email_controller: _email_controller, password_controller: _password_controller, signup_formkey: _signup_formkey),
+              signup_form(firstname_controller: _firstname_controller, secondname_controller: _secondname_controller, role_controller: _role_controller, phonenumber_controller: _phonenumber_controller, email_controller: _email_controller, password_controller: _password_controller, signup_formkey: _signup_formkey),
 
               // Terms and conditions
               const signup_t_and_c(),
 
               const SizedBox(height: 24),
 
-              // create account button
-              // SizedBox(width : double.infinity, child: ElevatedButton(onPressed: (){
-              //
-              //   // if(_signup_formkey.currentState!.validate()){
-              //   //   Auth_service.signup_user(context: context, first_name: _firstname_controller.text, last_name: _secondname_controller.text, phone_number: _phonenumber_controller.text, address: _address_controller.text, email: _email_controller.text, password: _password_controller.text);
-              //   //   Navigator.pushNamed(context, Onboarding_screen.route_name);
-              //   // }
-              //   Navigator.push(context, MaterialPageRoute(builder: (context) => Onboarding_screen()));
-              // },
-              //   child: const Text("Create Account"),),),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

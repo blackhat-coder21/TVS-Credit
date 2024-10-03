@@ -6,7 +6,7 @@ import '../../../utils/devices_utils/device_util.dart';
 class signup_form extends StatefulWidget {
   final firstname_controller;
   final secondname_controller;
-  final address_controller;
+  final role_controller;
   final  phonenumber_controller;
   final email_controller;
   final password_controller;
@@ -17,7 +17,7 @@ class signup_form extends StatefulWidget {
     super.key,
     required this.firstname_controller,
     required this.secondname_controller,
-    required this.address_controller,
+    required this.role_controller,
     required this.phonenumber_controller,
     required this.email_controller,
     required this.password_controller,
@@ -72,10 +72,32 @@ class _signup_formState extends State<signup_form> {
 
             const SizedBox(height: 12),
 
-            TextFormField(expands: false,decoration: const InputDecoration(labelText: "Address",prefixIcon: Icon(Iconsax.user_edit)),
-              controller: widget.address_controller,
-              validator: (stringText) => validator(stringText!,"Address") ,
+            DropdownButtonFormField<String>(
+              decoration: const InputDecoration(
+                labelText: "Role",
+                prefixIcon: Icon(Iconsax.user_edit),
+              ),
+              value: "Loan Apply", // Default value
+              items: const [
+                DropdownMenuItem(
+                  value: "Loan Apply",
+                  child: Text("Loan Apply"),
+                ),
+                DropdownMenuItem(
+                  value: "Loan Approval",
+                  child: Text("Loan Approval"),
+                ),
+              ],
+              onChanged: (String? newValue) {
+                setState(() {
+                  widget.role_controller.text = newValue!;
+                });
+              },
+              validator: (value) {
+                return validator(value ?? "", "Role");
+              },
             ),
+
 
             const SizedBox(height: 12),
 
