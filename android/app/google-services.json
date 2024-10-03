@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "61863467411",
+    "project_id": "tvs-test-c8dc1",
+    "storage_bucket": "tvs-test-c8dc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61863467411:android:0aa024fb152bbb15197066",
+        "android_client_info": {
+          "package_name": "com.example.tvs_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBekE6QdYKLC3mN5mJ5saA1kdlYjD9hvi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
